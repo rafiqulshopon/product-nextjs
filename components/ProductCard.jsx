@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ProductCard = ({ product }) => {
   return (
@@ -18,7 +19,7 @@ const ProductCard = ({ product }) => {
       </div>
       <div className='p-5 flex flex-col justify-between flex-grow'>
         <h5 className='text-lg font-semibold tracking-tight text-gray-900'>
-          {product.title}
+          <Link href={`/product/${product.id}`}>{product.title}</Link>
         </h5>
         <p className='mt-3 mb-4 font-normal text-gray-700'>
           Price: ${product.price.toFixed(2)}
