@@ -12,9 +12,8 @@ const ProductDetailsPage = ({ params }) => {
     const fetchProductDetails = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(
-          `https://groupyfy.com:8000/published-products/${params.id}`
-        );
+        const apiUrl = `${process.env.NEXT_PUBLIC_API_DOMAIN}/published-products/${params.id}`;
+        const response = await fetch(apiUrl);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
