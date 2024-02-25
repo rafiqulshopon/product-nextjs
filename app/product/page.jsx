@@ -2,12 +2,15 @@
 
 import React, { useEffect, useState } from 'react';
 import ProductCard from '@/components/ProductCard';
+import Loading from '@/components/Loading';
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setIsLoading(true);
       try {
         const response = await fetch(
           'https://groupyfy.com:8000/published-products'
@@ -20,12 +23,20 @@ const ProductsPage = () => {
       } catch (error) {
         console.error('Failed to fetch products:', error);
       } finally {
-        console.log('Fetch attempt finished.');
+        setIsLoading(false);
       }
     };
 
     fetchProducts();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className='flex justify-center items-center h-screen'>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className='container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>

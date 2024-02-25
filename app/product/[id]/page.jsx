@@ -1,5 +1,6 @@
 'use client';
 
+import Loading from '@/components/Loading';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -32,7 +33,7 @@ const ProductDetailsPage = ({ params }) => {
   if (isLoading)
     return (
       <div className='flex justify-center items-center h-screen'>
-        Loading...
+        <Loading />
       </div>
     );
 
